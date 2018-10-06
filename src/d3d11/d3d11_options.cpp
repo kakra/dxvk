@@ -11,7 +11,7 @@ namespace dxvk {
     this->maxTessFactor         = config.getOption<int32_t>("d3d11.maxTessFactor", 0);
     this->samplerAnisotropy     = config.getOption<int32_t>("d3d11.samplerAnisotropy", -1);
     this->deferSurfaceCreation  = config.getOption<bool>("dxgi.deferSurfaceCreation", false);
-    this->numBackBuffers        = config.getOption<int32_t>("dxgi.numBackBuffers", 0);
+    this->numBackBuffers        = config.getOption<int32_t>("dxgi.numBackBuffers", 4);
     this->maxFrameLatency       = config.getOption<int32_t>("dxgi.maxFrameLatency", 0);
     this->syncInterval          = config.getOption<int32_t>("dxgi.syncInterval", -1);
   }
