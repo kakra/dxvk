@@ -719,10 +719,10 @@ namespace dxvk {
     uint32_t n = 0;
 
     if (Vsync) {
+      pDstModes[n++] = VK_PRESENT_MODE_MAILBOX_KHR;
       pDstModes[n++] = VK_PRESENT_MODE_FIFO_KHR;
     } else {
       pDstModes[n++] = VK_PRESENT_MODE_IMMEDIATE_KHR;
-      pDstModes[n++] = VK_PRESENT_MODE_MAILBOX_KHR;
       pDstModes[n++] = VK_PRESENT_MODE_FIFO_RELAXED_KHR;
     }
 
