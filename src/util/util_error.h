@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <string>
 
 namespace dxvk {
@@ -16,7 +17,9 @@ namespace dxvk {
     
     DxvkError() { }
     DxvkError(std::string&& message)
-    : m_message(std::move(message)) { }
+    : m_message(std::move(message)) {
+      std::cerr << m_message << std::endl;
+    }
     
     const std::string& message() const {
       return m_message;
