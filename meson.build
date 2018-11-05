@@ -41,6 +41,10 @@ if dxvk_winelib
   exe_ext = '.exe.so'
   dll_ext = '.dll'
   def_spec_ext = '.spec'
+
+  if dxvk_compiler.has_header('sched.h') and dxvk_compiler.has_header('sys/types.h')
+    add_project_arguments('-DUSE_SCHED_BATCH', language : 'cpp')
+  endif
 else
   lib_vulkan  = dxvk_compiler.find_library('vulkan-1', dirs : dxvk_library_path)
   lib_d3d11   = dxvk_compiler.find_library('d3d11')

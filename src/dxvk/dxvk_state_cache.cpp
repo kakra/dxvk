@@ -1,6 +1,11 @@
 #include "dxvk_pipemanager.h"
 #include "dxvk_state_cache.h"
 
+#ifdef USE_SCHED_BATCH
+# include <sched.h>
+# include <sys/types.h>
+#endif
+
 namespace dxvk {
 
   static const Sha1Hash       g_nullHash      = Sha1Hash::compute(nullptr, 0);
@@ -354,6 +359,11 @@ namespace dxvk {
 
   void DxvkStateCache::workerFunc() {
     env::setThreadName(L"dxvk-shader");
+
+#ifdef USE_SCHED_BATCH
+    struct sched_param p = { .sched_priority = 0 };
+    sched_setscheduler(0, SCHED_BATCH, &p);
+#endif
 
     while (!m_stopThreads.load()) {
       WorkerItem item;
