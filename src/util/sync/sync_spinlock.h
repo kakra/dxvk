@@ -22,16 +22,16 @@ namespace dxvk::sync {
     Spinlock             (const Spinlock&) = delete;
     Spinlock& operator = (const Spinlock&) = delete;
     
-    void lock() {
+    inline void lock() {
       while (!this->try_lock())
         dxvk::this_thread::yield();
     }
     
-    void unlock() {
+    inline void unlock() {
       m_lock.store(0, std::memory_order_release);
     }
     
-    bool try_lock() {
+    inline bool try_lock() {
       uint32_t expected = 0;
       return m_lock.compare_exchange_strong(expected, 1,
         std::memory_order_acquire,
