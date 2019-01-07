@@ -259,7 +259,6 @@ namespace dxvk {
     const Rc<DxvkAdapter>                  m_adapter;
     const VkPhysicalDeviceProperties       m_devProps;
     const VkPhysicalDeviceMemoryProperties m_memProps;
-    const bool                             m_allowOvercommit;
     
     std::mutex                                      m_mutex;
     std::array<DxvkMemoryHeap, VK_MAX_MEMORY_HEAPS> m_memHeaps;
